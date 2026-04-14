@@ -1,1 +1,87 @@
-This project is for practicing Spring AI
+A hands-on Spring Boot project demonstrating integration with OpenAI using the Spring AI framework. Built to explore AI-powered application development with enterprise Java patterns — chat completion, prompt templating, and streaming responses.
+
+📌 Features
+
+✅ Chat Completion — Conversational AI using OpenAI GPT models via Spring AI's ChatClient
+✅ Prompt Templates — Dynamic prompt construction using PromptTemplate
+✅ Streaming Responses — Real-time token streaming with StreamingChatClient
+✅ REST API Layer — Spring Boot REST endpoints to expose AI capabilities
+✅ Configuration Management — Externalized API keys and model settings via application.properties
+
+
+🏗️ Architecture
+Client (HTTP)
+     │
+     ▼
+Spring Boot REST Controller
+     │
+     ▼
+Spring AI ChatClient
+     │
+     ▼
+OpenAI API (GPT-4 / GPT-3.5-turbo)
+
+🛠️ Tech Stack
+LayerTechnologyLanguageJava 17FrameworkSpring Boot 3.xAI FrameworkSpring AI 1.xAI ProviderOpenAI (GPT-4 / GPT-3.5-turbo)Build ToolMavenAPI TestingPostman / curl
+
+🚀 Getting Started
+Prerequisites
+
+Java 17+
+Maven 3.8+
+An OpenAI API Key
+
+1. Clone the repository
+bashgit clone https://github.com/kumarramtech/SpringAI.git
+cd SpringAI/openai
+2. Configure your OpenAI API Key
+In src/main/resources/application.properties:
+propertiesspring.ai.openai.api-key=YOUR_OPENAI_API_KEY
+spring.ai.openai.chat.options.model=gpt-4
+spring.ai.openai.chat.options.temperature=0.7
+
+⚠️ Never commit your API key. Use environment variables or a secrets manager in production.
+
+3. Build and Run
+bashmvn clean install
+mvn spring-boot:run
+The application starts on http://localhost:8080
+
+📡 API Endpoints
+Chat with AI
+httpGET /ai/chat?message=What is Spring AI?
+Response:
+json{
+  "response": "Spring AI is an application framework for AI engineering..."
+}
+Prompt Template
+httpGET /ai/prompt?topic=microservices&language=Java
+
+💡 Example Usage
+bashcurl "http://localhost:8080/ai/chat?message=Explain+event-driven+architecture+in+banking"
+
+📁 Project Structure
+openai/
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/openai/
+│   │   │   ├── controller/       # REST controllers
+│   │   │   ├── service/          # AI service layer
+│   │   │   └── config/           # Spring AI configuration
+│   │   └── resources/
+│   │       └── application.properties
+│   └── test/
+└── pom.xml
+
+🗺️ Roadmap
+
+ RAG (Retrieval Augmented Generation) with a vector database (PGVector / Redis)
+ Banking FAQ chatbot using domain-specific knowledge base
+ Tool/Function calling integration
+ Ollama support for local LLM inference
+ Docker + Kubernetes deployment on AWS EKS
+
+
+🧑‍💻 About the Author
+Ram Kumar L — Senior Java Developer with 11 years of experience in the banking domain.
+Specialising in Spring Boot, Microservices, Kafka, AWS, and now AI-powered enterprise applications.
